@@ -139,8 +139,12 @@ class NodeConfig(object):
         if not os.path.exists(os.path.join(directory, 'key')):
             os.makedirs(os.path.join(directory, 'key'))
 
+        os.chmod(os.path.join(directory, 'key'), 700)
+
         with open(os.path.join(directory, 'key', 'key.txt'), 'w') as f:
             f.write(self.private_key_file)
+
+        os.chmod(os.path.join(directory, 'key', 'key.txt'), 700)
 
         genesis.save(os.path.join(directory, 'genesis.json'))
 
