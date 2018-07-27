@@ -255,6 +255,7 @@ def start_action(data_dir, debug=False, init=False):
     for nconf in sorted(glob(data_dir + '/node*')):
         print(nconf)
         start_node(nconf, genesis_time, init)
+        init = False
 
 
 def stop_action(data_dir):
