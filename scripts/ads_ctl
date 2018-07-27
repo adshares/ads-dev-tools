@@ -348,8 +348,11 @@ def wait_action(data_dir, timeout=300):
 
 if __name__ == '__main__':
 
-    # Support for sudo
-    default_datapath = os.path.join(os.path.expanduser("~" + os.environ["USER"]), ".adsd")
+    if 'USER' in os.environ.keys():
+        # Support for sudo
+        default_datapath = os.path.join(os.path.expanduser("~" + os.environ["USER"]), ".adsd")
+    else:
+        default_datapath = os.path.expanduser("~/.adsd")
 
     parser = argparse.ArgumentParser(description='Start ADS nodes.')
     parser.add_argument('action', choices=['start', 'stop', 'clean', 'nodes', 'network', 'wait'])
