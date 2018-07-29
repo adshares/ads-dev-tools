@@ -101,12 +101,16 @@ def write(keys, token, secret):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Copy private keys from a genesis file to Vault.')
-    parser.add_argument('secret_path', help="Path to secrets")
+    parser.add_argument('secret_path', default='secret/ads', help="Path to secrets")
     parser.add_argument('-g', '--genesis', help='Genesis URI (url or filepath)')
+    parser.add_argument('-t', '--token', default=None, help='Vault write token')
 
     args = parser.parse_args()
 
     keys = get_keys_from_genesis(args.genesis)
-    token = getpass.getpass("Input Vault token (it will be hidden): ")
+    if args.token:
+        token = args.token
+    else:
+        token = getpass.getpass("Input Vault token (it will be hidden): ")
 
     write(keys, token, args.secret_path)
