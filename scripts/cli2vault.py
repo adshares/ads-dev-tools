@@ -26,4 +26,4 @@ if __name__ == '__main__':
         subprocess.call(['vault', 'write', node_secret_path, 'value={0}'.format(priv_key)])
 
     # Remove saved login token
-    os.remove(os.path.expanduser('~/.vault_tokens'))
+    os.remove(os.path.expanduser('~/.vault-token'))

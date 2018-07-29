@@ -95,7 +95,7 @@ def write(keys, token, secret):
     for nid, priv_key in keys:
         subprocess.call(['vault', 'write', '{0}/node{1}'.format(secret, nid), 'value={0}'.format(priv_key)])
 
-    os.remove(os.path.expanduser('~/.vault_tokens'))
+    os.remove(os.path.expanduser('~/.vault-token'))
 
 
 if __name__ == '__main__':
