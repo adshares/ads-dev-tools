@@ -294,6 +294,7 @@ def prepare_node_configuration(identifiers, genesis_data, private_key=False):
             # Node id taken from matching public key
             node = genesis_data.nodes[node_ident_genesis]
             node['_nid'] = node_ident_genesis
+            node['_secret'] = private_key
 
             print("Configuring nodes: {0}".format(node_ident_genesis))
         else:
@@ -369,8 +370,6 @@ def configure(config):
                 aconf.port = nconf.offi
                 aconf.address = account['_address']
                 aconf.public_key = account['public_key']
-                aconf.private_key = account['_secret']
-                aconf.signature = account['_sign']
 
                 aconf.save()
                 break
