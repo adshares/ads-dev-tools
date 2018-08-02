@@ -371,6 +371,9 @@ def configure(config):
                 aconf.address = account['_address']
                 aconf.public_key = account['public_key']
 
+                if '_secret' in account.keys():
+                    aconf.private_key = account['_secret']
+
                 aconf.save()
                 break
 
