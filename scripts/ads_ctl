@@ -94,13 +94,14 @@ def action_signal(data_dir, chosen_signal, name):
     :param data_dir: Path to directory holding the pid file.
     :return:
     """
-    pid = get_daemon_pid(data_dir)
-    if not pid:
+    pids = get_daemon_pid(data_dir)
+    if not pids:
         print("Daemon not running.")
     else:
         try:
-            os.kill(pid, chosen_signal)
-            print("ADS node {0} {1} successful.".format(data_dir, name))
+            for pid in pids:
+                os.kill(pid, chosen_signal)
+                print("ADS node {0} {1} successful.".format(data_dir, name))
         except OSError:
             print("ADS node {0} {1} failed.".format(data_dir, name))
 
