@@ -19,7 +19,7 @@ CLIENT_BIN_NAME = 'ads'
 def get_daemon_pid(data_dir):
     try:
         pids = subprocess.check_output(['pgrep', '-f', '{0}.*--work-dir={1}'.format(DAEMON_BIN_NAME, data_dir)])
-        return [int(p) for p in pids.split('\n')]
+        return [int(p) for p in pids.strip().split('\n')]
     except subprocess.CalledProcessError:
         return None
 
